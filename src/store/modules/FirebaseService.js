@@ -21,31 +21,35 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database()
 
 const schools = database.ref('schools')
-const classes = database.ref('classes')
-
-/* classes.on('value', (schoolClass) => {
-    schoolClass.forEach(singleClass => {if(singleClass.val().schoolId == 2) console.log(singleClass.val())})
-})
-
-classes.child('6').set({name: 'Turma dinamica 6', schoolId: 2})
-
-schools.on('value', (q) => {
-    console.log(q.val())
-}) */
+const schoolClasses = database.ref('classes')
 
 const state = {
     schoolList: [],
+    schoolClasses: [],
+    selectedSchool: {}
 }
 
 const getters = {
     schoolList(state){
         return state.schoolList;
     },
+    schoolClasses(state){
+        return state.schoolClasses;
+    },
+    selectedSchool(state){
+        return state.selectedSchool;
+    }
 }
 
 const mutations = {
     setSchoolList(state, payload){
         state.schoolList = payload.schoolList;
+    },
+    setSchoolClasses(state, payload){
+        state.schoolClasses = payload.schoolClasses;
+    },
+    setSelectedSchool(state, payload){
+        state.selectedSchool = payload.selectedSchool;
     },
 }
 
@@ -57,6 +61,17 @@ const actions = {
             });
         })
     },
+    getSchoolClassesFromServer(context, payload){
+        schoolClasses.on('value', (schoolClasses) => {
+            let classesFromSchool = schoolClasses.val().filter(schoolClass => (schoolClass.schoolId == payload.id))
+            context.commit('setSchoolClasses', {
+                schoolClasses: {...classesFromSchool}
+            });
+            context.commit('setSelectedSchool', {
+                selectedSchool: payload
+            });
+        })
+    }
 }
 
 export default {

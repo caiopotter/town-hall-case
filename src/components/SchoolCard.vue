@@ -30,7 +30,7 @@ export default {
 
   methods: {
         selectSchool(){
-            this.$emit('selectedClass', this.schoolClass);
+            this.$emit('selectedClass', {...this.school, ...{id: this.index}});
         }
     }
 }

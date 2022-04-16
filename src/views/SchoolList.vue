@@ -16,7 +16,7 @@
   </v-card>
         <v-row>
             <v-col class="mb-n6" cols="12" sm="12" md="6" lg="4" v-for="(school, index) in schoolList" :key="index">
-                    <school-card :index="index" :school="school" @selectedClass="log"></school-card>
+                    <school-card :index="index" :school="school" @selectedClass="selectClass"></school-card>
             </v-col>
         </v-row>
     </v-container>
@@ -36,8 +36,8 @@ export default {
       },
   },
   methods: {
-        log(){
-            console.log('click');
+        selectClass(selectedSchool){
+            this.$store.dispatch('getSchoolClassesFromServer', selectedSchool)
         }
     }
 }
