@@ -1,14 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import SchoolList from '../views/SchoolList.vue'
+import ClassList from '../views/ClassList.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/schools'
+  },
+  {
+    path: '/schools',
+    name: 'SchoolList',
+    component: SchoolList
+  },
+  {
+    path: '/classList',
+    name: 'ClassList',
+    component: ClassList
   },
   {
     path: '/about',
