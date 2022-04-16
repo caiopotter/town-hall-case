@@ -2,13 +2,13 @@
     <v-container>
         <v-card outlined>
             <v-card-title>
-                Escola {{index}}
+                {{school.name}}
             </v-card-title>
             <v-card-subtitle>
-                Alguma outra coisa
+                {{school.address}}
             </v-card-subtitle>
             <v-card-text>
-                Nada aqui ainda
+                Zona {{school.zone}}
             </v-card-text>
             <v-card-actions>
                     <v-col cols="12" class="mt-n6 text-right">
@@ -26,7 +26,7 @@
 
 export default {
   name: 'SchoolCard',
-  props: ['index', 'schoolClass'],
+  props: ['index', 'school'],
 
   methods: {
         selectSchool(){

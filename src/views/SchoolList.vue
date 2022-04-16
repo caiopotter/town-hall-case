@@ -15,8 +15,8 @@
     </v-toolbar>
   </v-card>
         <v-row>
-            <v-col class="mb-n6" cols="12" sm="12" md="6" lg="4" v-for="(n, index) in 10" :key="index">
-                    <school-card :index="n" @selectedClass="log"></school-card>
+            <v-col class="mb-n6" cols="12" sm="12" md="6" lg="4" v-for="(school, index) in schoolList" :key="index">
+                    <school-card :index="index" :school="school" @selectedClass="log"></school-card>
             </v-col>
         </v-row>
     </v-container>
@@ -30,7 +30,11 @@ export default {
   components: {
     SchoolCard
   },
-
+  computed:{
+    schoolList(){
+          return this.$store.getters.schoolList;
+      },
+  },
   methods: {
         log(){
             console.log('click');

@@ -51,5 +51,8 @@ export default {
   data: () => ({
     //
   }),
+  mounted(){
+    this.$store.dispatch('getSchoolListFromServer')
+  },
 };
 </script>

@@ -23,7 +23,7 @@ const database = firebase.database()
 const schools = database.ref('schools')
 const classes = database.ref('classes')
 
-classes.on('value', (schoolClass) => {
+/* classes.on('value', (schoolClass) => {
     schoolClass.forEach(singleClass => {if(singleClass.val().schoolId == 2) console.log(singleClass.val())})
 })
 
@@ -31,59 +31,32 @@ classes.child('6').set({name: 'Turma dinamica 6', schoolId: 2})
 
 schools.on('value', (q) => {
     console.log(q.val())
-})
+}) */
 
 const state = {
-    groupPreferences: {},
-    listeners: {},
-    challengeBattles: {}
+    schoolList: [],
 }
 
 const getters = {
-    groupPreferences(state) {
-        return state.groupPreferences
+    schoolList(state){
+        return state.schoolList;
     },
-    battleListeners(state) {
-        return state.listeners
-    },
-    challengesBattles(state) {
-        return state.challengeBattles
-    }
 }
 
 const mutations = {
-
-    setGroupPreferences(state, payload) {
-        Vue.set(state.groupPreferences, payload.id, payload)
+    setSchoolList(state, payload){
+        state.schoolList = payload.schoolList;
     },
-    setListener(state, payload) {
-        state.listeners[payload.battleId] = payload.listener
-    },
-    removeListener(state, payload) {
-        delete state.listeners[payload.id]
-    },
-    setChallengeBattles(state, payload) {
-        // state.challengeBattles[payload.challenge.id] = payload.battles
-        Vue.set(state.challengeBattles, payload.challenge.id, payload.battles)
-    }
 }
 
 const actions = {
-    writeQuestionReportData(context, payload) {
-        database.ref('LMS/questoes_denunciadas/' + payload[0]).set({
-            id: payload[0],
-            erro: payload[1],
-            desc: payload[2],
-            user: payload[3]
-        });
+    getSchoolListFromServer(context){
+        schools.on('value', (schools) => {
+            context.commit('setSchoolList', {
+                schoolList: {...schools.val()}
+            });
+        })
     },
-
-    setUserToken(context, token) {
-        database.ref('user_preferences/' + context.getters.user.id)
-            .child('token')
-            .set(token);
-    }
-
 }
 
 export default {
