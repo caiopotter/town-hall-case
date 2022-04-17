@@ -37,7 +37,11 @@ export default {
   },
   methods: {
         selectClass(selectedSchool){
-            this.$store.dispatch('getSchoolClassesFromServer', selectedSchool)
+            this.$store.dispatch('getSchoolClassesFromServer', selectedSchool).then(isOk => {
+              if(isOk){
+                this.$router.push('/classList')
+              }
+            })
         }
     }
 }

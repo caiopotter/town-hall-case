@@ -62,15 +62,21 @@ const actions = {
         })
     },
     getSchoolClassesFromServer(context, payload){
-        schoolClasses.on('value', (schoolClasses) => {
-            let classesFromSchool = schoolClasses.val().filter(schoolClass => (schoolClass.schoolId == payload.id))
-            context.commit('setSchoolClasses', {
-                schoolClasses: {...classesFromSchool}
-            });
-            context.commit('setSelectedSchool', {
-                selectedSchool: payload
-            });
-        })
+        try{
+            schoolClasses.on('value', (schoolClasses) => {
+                let classesFromSchool = schoolClasses.val().filter(schoolClass => (schoolClass.schoolId == payload.id))
+                context.commit('setSchoolClasses', {
+                    schoolClasses: {...classesFromSchool}
+                });
+                context.commit('setSelectedSchool', {
+                    selectedSchool: payload
+                });
+            })
+            return true
+        }catch(e){
+            console.log(e)
+            return false
+        }
     }
 }
 
