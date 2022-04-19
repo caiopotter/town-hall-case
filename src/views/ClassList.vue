@@ -133,7 +133,7 @@ export default {
         loading: false,
         yearOptions: ['6º', '7º', '8º', '9º'],
         shiftOptions: ['Manhã', 'Tarde', 'Noite', 'Integral'],
-        text: 'oi?',
+        text: '',
         statusColor: '',
         rules: {
         required: value => !!value || 'Campo obrigatório.',

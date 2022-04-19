@@ -12,6 +12,7 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
+                v-model="searchSchool"
                 hide-details
                 prepend-icon="mdi-magnify"
                 single-line
@@ -122,8 +123,12 @@ export default {
   },
   computed:{
     schoolList(){
-          return this.$store.getters.schoolList;
-      },
+      if(this.searchSchool && this.searchSchool != ''){
+        let newArrayDataOfOjbect = Object.values(this.$store.getters.schoolList)
+        return newArrayDataOfOjbect.filter(school => (school.name.toLowerCase().includes(this.searchSchool.toLowerCase())))
+      }
+      return this.$store.getters.schoolList;
+    },
   },
   data: () => ({
     newSchoolDialog: false,
@@ -134,8 +139,9 @@ export default {
     isValidForm: false,
     userNotification: false,
     loading: false,
-    text: 'oi?',
+    text: '',
     statusColor: '',
+    searchSchool: '',
     rules: {
       required: value => !!value || 'Campo obrigatório.',
       min: v => v.length >= 3 || 'Ao menos 3 caracteres',
