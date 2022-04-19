@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color="dark_blue"
       dark
     >
     <div v-if="$route.path.includes('/classList')">
