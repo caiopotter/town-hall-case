@@ -1,4 +1,4 @@
-# town-hall-frontend
+# town-hall-case
 
 ## Sobre o projeto
 
@@ -45,11 +45,22 @@ A plataforma escolhida para o 'backend' foi a Firebase, que é uma plataforma de
 Sua base de dados noSql armazena os dados em JSON e são sincronizados em tempo real, o que significa que se um usuário atualiza algum valor, todos os outros usuários tem os dados atualizados sem necessidade de recarregar a página e realizar uma nova consulta ao banco de dados.
 Além disso, a base de dados é multiplataforma e armazena os dados em disco, caso o usuário fique offline.
 
+![school-database](./public/img/screenshots/schoolDatabase.PNG)
+![class-database](./public/img/screenshots/classDatabase.PNG)
+
 
 ## Funcionamento
 
 A tela principal lista as escolas cadastradas, permite o filtro de escolas por nome, o cadastro de novas escolas e a visualização dos detalhes de uma escola selecionada.
 
+![school-list](./public/img/screenshots/Escolas.PNG)
+![school-filter](./public/img/screenshots/Filtro.PNG)
+
 Caso o usuário deseje visualizar as turmas de uma escola, basta clicar no botão de detalhes, que ele será redirecionado para a tela de lista turmas.
 
+![school-dialog](./public/img/screenshots/AddEscola.PNG)
+![class-list](./public/img/screenshots/Turmas.PNG)
+
 A tela de turmas permite que o usuário veja as turmas da escola selecionada. Também permite a criação de novas turmas para a mesma escola.
+
+![class-dialog](./public/img/screenshots/AddTurmas.PNG)
