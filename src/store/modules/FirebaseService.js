@@ -54,6 +54,24 @@ const mutations = {
 }
 
 const actions = {
+    async createSchool(context, payload){
+        try{
+            const response = await schools.push(payload);
+            return ({success: true})
+        }catch(e){
+            console.log(e)
+            return ({success: false})
+        }
+    },
+    async createClass(context, payload){
+        try{
+            const response = await schoolClasses.push(payload);
+            return ({success: true})
+        }catch(e){
+            console.log(e)
+            return ({success: false})
+        }
+    },
     getSchoolListFromServer(context){
         schools.on('value', (schools) => {
             context.commit('setSchoolList', {
@@ -64,9 +82,14 @@ const actions = {
     getSchoolClassesFromServer(context, payload){
         try{
             schoolClasses.on('value', (schoolClasses) => {
-                let classesFromSchool = schoolClasses.val().filter(schoolClass => (schoolClass.schoolId == payload.id))
+                let schoolClassesList = [];
+                schoolClasses.forEach(schoolClass =>{
+                    if(schoolClass.val().schoolId == payload.id){
+                        schoolClassesList.push(schoolClass.val());
+                    }
+                })
                 context.commit('setSchoolClasses', {
-                    schoolClasses: {...classesFromSchool}
+                    schoolClasses: schoolClassesList
                 });
                 context.commit('setSelectedSchool', {
                     selectedSchool: payload
