@@ -64,3 +64,7 @@ Caso o usuário deseje visualizar as turmas de uma escola, basta clicar no botã
 A tela de turmas permite que o usuário veja as turmas da escola selecionada. Também permite a criação de novas turmas para a mesma escola.
 
 ![class-dialog](./public/img/screenshots/AddTurmas.PNG)
+
+## Melhorias futuras
+
+A aplicação foi desenvolvida com base em crescimento e escalabilidade. Novos requisitos podem surgir e ser incorporados às funcionalidades já existentes. Além disso, a plataforma Firebase permite autenticação Single Sign On utilizando o email gmail, garantindo mais segurança e robustez ao projeto.
